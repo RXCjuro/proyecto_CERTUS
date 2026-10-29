@@ -1,0 +1,3 @@
+.panel{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:1.25rem;margin-bottom:1rem;overflow-x:auto}
+.datos{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.9rem 1.5rem;margin:0}.datos dt{font-size:.85rem;color:var(--suave)}.datos dd{margin:0;font-weight:500}
+@media print{#side,.herramientas,.menu-btn{display:none}.shell{display:block}}

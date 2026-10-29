@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function institucional() {
+      return request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email.matches('.*@certus[.]edu[.]pe');
+    }
+    function rol() { return get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.rol; }
+    function escribe() { return institucional() && rol() in ['admin', 'editor']; }
+
+    match /usuarios/{uid} {
+      allow read: if institucional() && (request.auth.uid == uid || rol() == 'admin');
+      allow create: if institucional() && request.auth.uid == uid && request.resource.data.rol == 'consulta';
+      allow update: if institucional() && rol() == 'admin';
+    }
+    match /{col}/{id} {
+      allow read: if institucional() && col in ['docentes', 'evaluaciones', 'supervisiones', 'encuestas'];
+      allow create, update: if escribe() && col in ['docentes', 'evaluaciones', 'supervisiones', 'encuestas'];
+      allow delete: if institucional() && rol() == 'admin' && col in ['docentes', 'evaluaciones', 'supervisiones', 'encuestas'];
+    }
+  }
+}

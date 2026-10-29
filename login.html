@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ingresar · Docente360</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="css/main.css"><link rel="stylesheet" href="css/login.css"><link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="login">
+<section class="login-lado"><h1>Docente360</h1><p>Toda la trayectoria de cada docente de CERTUS en un solo legajo: datos, evaluaciones, supervisiones y encuestas.</p></section>
+<section class="login-form"><h2>Ingresa a tu cuenta</h2>
+<p>Usa tu correo institucional para continuar.</p>
+<button id="entrar" class="btn grande">Ingresar con correo institucional</button>
+<p id="error" class="err" role="alert"></p></section>
+<script type="module">
+import { login } from "./js/services/auth-service.js";
+import { observarSesion } from "./js/services/auth-service.js";
+observarSesion((u) => { if (u) location.href = "dashboard.html"; });
+document.getElementById("entrar").onclick = async () => {
+  try { await login(); location.href = "dashboard.html"; }
+  catch (e) { document.getElementById("error").textContent = e.message; }
+};
+</script>
+</body></html>

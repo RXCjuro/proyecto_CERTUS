@@ -1,0 +1,5 @@
+.resumen{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1.5rem}
+.resumen a{background:#fff;border:1px solid var(--linea);border-left:4px solid var(--acento);border-radius:var(--r);padding:1rem;text-decoration:none;color:var(--texto)}
+.resumen b{display:block;font-size:2rem;color:var(--tinta)}
+.panel{background:#fff;border:1px solid var(--linea);border-radius:var(--r);padding:1.25rem;margin-bottom:1rem}
+.barra{display:grid;grid-template-columns:180px 1fr 30px;align-items:center;gap:.6rem;margin:.35rem 0}.barra i{display:block;height:12px;background:var(--acento);border-radius:3px}.barra em{font-style:normal;color:var(--suave)}

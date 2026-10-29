@@ -1,0 +1,4 @@
+body.login{display:grid;grid-template-columns:1.1fr 1fr;min-height:100vh}
+.login-lado{background:var(--tinta);color:#fff;padding:4rem;display:flex;flex-direction:column;justify-content:center}
+.login-lado h1{font-size:3rem;margin-bottom:1rem}.login-lado p{font-size:1.15rem;max-width:30ch;opacity:.85}
+.login-form{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:4rem;gap:.5rem}
