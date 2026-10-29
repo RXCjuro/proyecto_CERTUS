@@ -1,16 +1,21 @@
 # Docente360 – Prototipo de gestión del legajo docente (CERTUS)
 
-Aplicación web responsive (HTML + CSS + JavaScript) con Firebase Authentication (Google) y Firestore.
+Aplicación web responsive (HTML + CSS + JavaScript) con Firebase Authentication (Google), Firestore y Firebase Hosting.
+Nada se publica automáticamente: el despliegue lo haces tú.
 
 ## Puesta en marcha
-1. Crea un proyecto en https://console.firebase.google.com
-2. Activa **Authentication > Google** y **Firestore Database**.
-3. Copia tu configuración web en `js/config/firebase-config.js` y ajusta `DOMINIO` (por defecto `certus.edu.pe`).
-   Si cambias el dominio, cámbialo también en `firestore.rules`.
-4. Instala la CLI: `npm i -g firebase-tools`, luego `firebase login` y edita `.firebaserc`.
-5. Publica reglas: `firebase deploy --only firestore:rules`
-6. Prueba en local: `firebase serve` (o `npx serve .`; los módulos ES requieren servidor, no abrir con doble clic).
-7. Despliega: `firebase deploy`
+1. Crea o abre tu proyecto en https://console.firebase.google.com
+2. Activa **Authentication > Google**, **Firestore Database** y **Hosting**.
+3. Registra una app web y copia su configuración en `js/config/firebase-config.js`.
+   Ajusta `DOMINIO` (por defecto `certus.edu.pe`); si lo cambias, cámbialo también en `firestore.rules`.
+4. Instala la CLI: `npm i -g firebase-tools`, luego `firebase login` y pon el ID de tu proyecto en `.firebaserc`.
+5. Prueba en local: `npx serve .` (los módulos ES no funcionan abriendo el HTML con doble clic).
+6. Despliega cuando quieras:
+   - Solo la web: `firebase deploy --only hosting`
+   - Solo las reglas: `firebase deploy --only firestore:rules`
+   - Todo: `firebase deploy`
+
+Si Firebase te pide verificación en dos pasos, también puedes subir la carpeta desde la consola de Firebase (Hosting > Primeros pasos) o autenticarte con `firebase login --no-localhost`.
 
 ## Primer administrador
 El primer ingreso crea el perfil con rol `consulta`. En Firestore > `usuarios/{uid}` cambia `rol` a `admin`.

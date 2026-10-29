@@ -24,11 +24,11 @@ export function observarSesion(cb) {
   onAuthStateChanged(auth, async (u) => {
     if (!u) return cb(null);
     if (!esInstitucional(u.email)) { await signOut(auth); return cb(null); }
-    const ref = doc(db, "usuarios", u.uid);
-    let snap = await getDoc(ref);
+    const r = doc(db, "usuarios", u.uid);
+    let snap = await getDoc(r);
     if (!snap.exists()) {
-      await setDoc(ref, { email: u.email, nombre: u.displayName || u.email, rol: "consulta", creado: serverTimestamp() });
-      snap = await getDoc(ref);
+      await setDoc(r, { email: u.email, nombre: u.displayName || u.email, rol: "consulta", creado: serverTimestamp() });
+      snap = await getDoc(r);
     }
     cb({ uid: u.uid, ...snap.data() });
   });
